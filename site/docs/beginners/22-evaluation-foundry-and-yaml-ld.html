@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evaluation Foundry And YAML-LD</title>
+<link rel="canonical" href="https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/docs/beginners/22-evaluation-foundry-and-yaml-ld.html">
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:78rem;margin:auto;padding:2rem}pre,code{overflow:auto}table{border-collapse:collapse}td,th{border:1px solid #bbb;padding:.4rem}</style>
+</head>
+<body><main><h1 id="evaluation-foundry-and-yaml-ld">Evaluation Foundry And YAML-LD</h1>
+<p>The Publication Foundry asks, “Is this bundle ready to publish as a governed
+product?” The Evaluation Foundry asks an earlier and deliberately different
+question:</p>
+<blockquote>
+<p>If we represent these sources faithfully, which OKF Explorer capabilities
+can they demonstrate, which questions can a person answer, and where are the
+source gaps?</p>
+</blockquote>
+<p>This chapter explains the process through the
+<a href="../../evaluation-foundry/fixtures/heritage-warwickshire/profile.html">Coventry and Warwickshire heritage exemplar</a>.
+It also explains the exemplar’s proposed YAML-LD extension to OKF in plain
+language.</p>
+<h2 id="the-three-products-must-stay-separate">The Three Products Must Stay Separate</h2>
+<p>The exemplar publishes three bundles because they prove different things.</p>
+<table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Purpose</th>
+<th style="text-align:right">Real-world claims?</th>
+<th style="text-align:right">Loaded by default?</th>
+<th style="text-align:right">Included in faithful counts?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/tiny/index.html">Tiny assurance fixture</a></td>
+<td>Prove the producer and real Explorer journey cheaply</td>
+<td style="text-align:right">Yes, copied from the frozen source</td>
+<td style="text-align:right">No</td>
+<td style="text-align:right">No</td>
+</tr>
+<tr>
+<td><a href="https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/index.html">Source-backed faithful corpus</a></td>
+<td>Evaluate the complete, explicitly bounded source population</td>
+<td style="text-align:right">Yes, with visible normalization</td>
+<td style="text-align:right">Yes</td>
+<td style="text-align:right">Yes</td>
+</tr>
+<tr>
+<td><a href="https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/synthetic/index.html">Synthetic supplement</a></td>
+<td>Demonstrate features the source cannot evidence</td>
+<td style="text-align:right">No; every item is invented</td>
+<td style="text-align:right">No</td>
+<td style="text-align:right">No</td>
+</tr>
+</tbody>
+</table>
+<p>This separation prevents an attractive demonstration from quietly becoming a
+false statement about a real person, place or event.</p>
+<h2 id="the-evaluation-process">The Evaluation Process</h2>
+<p>The process is a derivative of the two-stage
+<a href="https://chris-page-gov.github.io/okf-explorer/docs/beginners/19-foundry-authoring-and-domain-profiles.html">Foundry authoring workflow</a>. It
+retains immutable acquisition, a tiny-fixture gate, real-consumer testing,
+plane roots and byte-identical publication, but adds a feature-planning stage.</p>
+<h3 id="e0-turn-the-conversation-into-testable-outcomes">E0 — Turn The Conversation Into Testable Outcomes</h3>
+<p>Write down the questions people want to answer before choosing fields. In this
+exemplar they include:</p>
+<ul>
+<li>What protected heritage is near a named place?</li>
+<li>Which Grade I assets are in a selected authority?</li>
+<li>Which records appeared in Heritage at Risk, in what year and condition?</li>
+<li>Which periods, people and alternative names can be found?</li>
+<li>How did annual risk observations change?</li>
+<li>Which associations are source-declared, mechanically normalized or only
+illustrative?</li>
+</ul>
+<p>Each question becomes a scored question, an Explorer journey or an explicit
+gap. A polished screen is not evidence that the question can be answered.</p>
+<h3 id="e1-profile-sources-and-their-constraints">E1 — Profile Sources And Their Constraints</h3>
+<p>For every source record:</p>
+<ul>
+<li>who maintains it;</li>
+<li>the exact URL and access method;</li>
+<li>identifiers, dates, geometry and representation types;</li>
+<li>licence, attribution and automation limits;</li>
+<li>update or snapshot time;</li>
+<li>omissions and known incompleteness.</li>
+</ul>
+<p>The exemplar uses Historic England open data and sanctioned annual workbooks,
+with exact local-authority geometry from ONS. Historic England rich HTML pages
+are linked as official representations, but their narrative is not copied in
+bulk.</p>
+<h3 id="e2-define-everything-before-counting">E2 — Define “Everything” Before Counting</h3>
+<p>“Everything in Warwickshire” is ambiguous. It might mean a modern county, a
+historic county, records whose address says Warwickshire, or geometries that
+cross a boundary.</p>
+<p>Here it means one unique current NHLE <code>ListEntry</code> whose source geometry
+intersects Coventry or one of five Warwickshire district boundaries in the
+pinned December 2025 boundary layer. A feature crossing two districts appears
+once and retains both memberships. Duplicate NHLE display layers are excluded
+by layer identity, not by guesswork.</p>
+<p>Heritage at Risk is a separate annual population. Workbook year, sheet and row
+are retained because an annual row is evidence about that snapshot, not a live
+claim about today.</p>
+<p>Its geographic scope is not determined by finding a familiar place name
+anywhere in the row. A row qualifies only through an authoritative
+local-government field: Local Planning Authority, Local Authority, Unitary
+Authority, District/Borough, Council, or an explicit Warwickshire County
+value. Locality, parish, town and city fields are not used as authority
+evidence. This prevents, for example, a place called Warwick Bridge in Cumbria
+from being mistaken for Warwick District.</p>
+<p>The workbooks also supply a register <strong>year</strong>, not a publication day. A
+normalized HAR observation therefore records <code>year</code>, <code>temporal_coverage</code> and
+<code>date_precision: year</code>, while day-precision timestamp fields remain empty. The
+Timeline can show the annual snapshot without inventing 1 January.</p>
+<h3 id="e3-make-mapping-proposals-reversible">E3 — Make Mapping Proposals Reversible</h3>
+<p>Every source-to-OKF mapping states:</p>
+<ul>
+<li>source field or source relationship;</li>
+<li>Explorer target field or semantic predicate;</li>
+<li>evidence and derivation;</li>
+<li>confidence;</li>
+<li>whether the source value can be recovered;</li>
+<li>which interface features it affects;</li>
+<li>limitations.</li>
+</ul>
+<p>The controlling <a href="../../evaluation-foundry/fixtures/heritage-warwickshire/mapping-proposals.yaml">mapping proposals</a>
+are reviewable before the large build. An absent source value remains unknown;
+the mapper does not invent one to improve a chart.</p>
+<p>Two relationships that look similar in the Graph deliberately have different
+evidence:</p>
+<table>
+<thead>
+<tr>
+<th>Relationship</th>
+<th>Evidence</th>
+<th>What may be claimed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NHLE asset → geography</td>
+<td>Historic England feature geometry intersected with the pinned ONS boundary</td>
+<td>Exact spatial intersection for that snapshot and boundary vintage</td>
+</tr>
+<tr>
+<td>HAR observation → geography</td>
+<td>Exact authority field and value from the annual workbook</td>
+<td>Reversible field normalization; <strong>not</strong> a spatial intersection</td>
+</tr>
+</tbody>
+</table>
+<p>Both can use the governed <code>containedInPlace</code> predicate for navigation, while
+their assertion metadata lets the interface explain how each edge was made.</p>
+<h3 id="e4-prove-a-tiny-fixture-first">E4 — Prove A Tiny Fixture First</h3>
+<p>The tiny fixture contains exactly three real records selected from the frozen
+full snapshot: two NHLE assets and one 2025 Heritage at Risk observation. It is
+a quick assurance sample, not the denominator or a miniature claim to
+completeness. The full ONS boundaries are used when the records are acquired;
+the fixture retains the same identities and canonical geometry digests but
+omits the large boundary coordinate arrays. It is still large enough to
+exercise:</p>
+<ul>
+<li>exact, alias and misspelling-tolerant search;</li>
+<li>facets over the three records;</li>
+<li>point and polygon geometry;</li>
+<li>an NHLE rich page, an exact HAR register search and machine-readable source resources;</li>
+<li>a relationship with evidence;</li>
+<li>a timeline bucket and data card.</li>
+</ul>
+<p>Build it twice with the same timestamp and compare every byte. Then run the
+real OKF Explorer against those bytes. Separate negative cases prove that
+duplicate IDs, invalid URLs, unsafe paths, bad digests and synthetic leakage
+fail closed.</p>
+<h3 id="e5-build-the-faithful-population">E5 — Build The Faithful Population</h3>
+<p>Only after E4 passes does the same mapping process build the full frozen
+population. The large bundle uses lazy record chunks, sharded search, exact
+facet postings, a route locator, relationship adjacency, bounded GeoJSON and
+separate control, data, search, semantic and presentation roots.</p>
+<p>Those roots form a dependency map. A changed mapping or source path is first
+turned into an impact plan. The producer then writes only the affected planes
+and stable hash shards; unchanged files retain exactly the same bytes. Unknown
+paths fail closed to the full check set. This makes a late spelling correction
+cheap without pretending that a semantic or data change has a small impact.</p>
+<p>The build report reconciles its output with the source denominator. A mismatch
+is a failed build or a visible limitation, never a number to explain away.</p>
+<p>Geometry is kept equally explicit. Retained NHLE features are requested from
+ArcGIS with output spatial reference EPSG:4326 and are labelled EPSG:4326; the
+producer does not pretend that these delivered coordinates are EPSG:27700 or
+perform an undocumented reprojection. It converts the Esri geometry structure
+to GeoJSON while preserving ring topology: holes stay with their containing
+outer ring, and separate outer rings become a <code>MultiPolygon</code> rather than being
+joined into a false single polygon. A bounding-box centre may be supplied as a
+clearly labelled representative point for orientation, but it is never a
+replacement for the source geometry.</p>
+<h3 id="e6-add-synthetic-examples-only-in-a-new-namespace">E6 — Add Synthetic Examples Only In A New Namespace</h3>
+<p>Some useful graph features may not occur in a permitted source. The exemplar’s
+synthetic supplement therefore invents a place, a person and a future event.
+It demonstrates an uncertain person attribution and a proposed intervention
+without making either claim about a real asset.</p>
+<p>Its descriptor has a different identity and base namespace and declares:</p>
+<pre><code class="language-yaml">assertion_scope: synthetic-fixture
+default_loaded: false
+include_in_counts: false
+include_in_search: false
+</code></pre>
+<h3 id="e7-run-the-conversation-through-the-real-explorer">E7 — Run The Conversation Through The Real Explorer</h3>
+<p>One canonical query-and-facet state must drive all eight Explorer presentation
+planes: Reader, Graph, Links, Timeline, Type, Resources, Map and Narrative,
+along with the selected-record card. The executable journey searches, applies
+the Coventry local-authority facet, changes planes, applies a Map filter,
+inspects a relationship and source resource, uses browser Back and Forward,
+and reloads the copied URL.</p>
+<p>The result count and active filters must remain coherent throughout. This is
+stronger evidence than testing each view with a different hand-picked example.</p>
+<h3 id="e8-validate-links-rendering-and-accessibility">E8 — Validate Links, Rendering And Accessibility</h3>
+<p>Validation has several layers:</p>
+<ol>
+<li>Corpus manifests independently prove that descriptors, chunks, search
+shards and semantic registries stay inside their publication root and match
+their declared digests.</li>
+<li>The build-time URL contract checks every record and resource URL for a safe
+scheme and identifier binding, and resolves every internal resource
+reference. Stable external intents are grouped by
+<code>SHA-256(canonical URL)</code>, so one changed URL invalidates one shard instead of
+the whole corpus. This is structural validation, not a live request to every
+external page.</li>
+<li>Every in-scope Markdown document in the bounded public reading closure
+renders to an HTML Site page and its rewritten links still resolve. Files
+outside that closure are not covered by this claim.</li>
+<li>The assembled Site audit checks the rewritten HTML routes and internal
+references in the reading closure.</li>
+<li>Representative protected source pages are opened in a genuine interactive
+browser on an independent freshness schedule. A small receipt outside the
+candidate records when each page was seen, its requested and final URL,
+status, title and expected identity text. The evaluator rejects a challenge
+page, failed status, unexpected redirect or mismatched identity; the receipt
+is evidence, not a waiver.</li>
+<li>The exact deployed Explorer, report, methodology, profile, tiny and
+synthetic URLs are checked by identity and content—not only HTTP status.</li>
+<li>Controls are keyboard reachable, status changes are named, focus remains
+usable and reduced-motion preferences are respected.</li>
+</ol>
+<p>The generated candidate can have zero structural failures while carrying no
+live external receipt at all. That means every URL is well formed and bound to
+the right record; it does not mean every external server responded. Live source
+availability is sampled in the browser, and public success is claimed only in
+a signed promotion envelope after the exact deployed candidate passes its
+terminal journey.</p>
+<p>The repository keeps ordinary, browser-compatible Markdown as its source of
+truth. It uses normal Markdown links rather than editor-specific wikilinks.
+During publication, each in-scope <code>.md</code> reading page is rendered as an <code>.html</code>
+page and internal links are rewritten and checked against those HTML routes.
+Explorer deep links point to the published project-root URL ending in <code>/</code>,
+identify the bundle and carry an encoded record route in the fragment. A
+copied URL can therefore reopen the same record in the interface instead of
+exposing a filesystem path or relying on a Markdown renderer.</p>
+<h3 id="e9-publish-the-bytes-that-passed">E9 — Publish The Bytes That Passed</h3>
+<p>The release candidate records a digest root for each plane. The large heritage
+corpus, its reading pages and release assets are exported as the separate
+<a href="https://github.com/chris-page-gov/okf-heritage-coventry-warwickshire">Coventry and Warwickshire publication unit</a>.
+The reusable <a href="https://chris-page-gov.github.io/okf-explorer/">OKF Explorer runtime</a>
+loads its external descriptor.</p>
+<p>GitHub Pages must serve the same candidate that passed the checks. If a
+post-deploy check fails, rerun only the affected dependency closure, create a
+new candidate and repeat the affected gates. Do not rebuild silently and call
+it the same release.</p>
+<h3 id="e10-promote-with-a-separate-signed-envelope">E10 — Promote With A Separate Signed Envelope</h3>
+<p>The candidate answers “what are these bytes?” The promotion envelope answers
+“which exact deployment did an independent run accept?” Keeping them separate
+prevents a circular build in which writing the success timestamp changes the
+candidate that supposedly passed.</p>
+<p>The signed envelope binds:</p>
+<ul>
+<li>the repository commit and candidate descriptor digest;</li>
+<li>the control, data, search, semantic and presentation roots;</li>
+<li>the deployed descriptor URL and observed digest;</li>
+<li>browser-journey and link-freshness receipt digests;</li>
+<li>the annotated release tag and immutable-release identity; and</li>
+<li>the decision, signer and observation time.</li>
+</ul>
+<p>Refreshing an expired source-link receipt creates new evidence and, if needed,
+a new envelope. It does not rewrite the corpus.</p>
+<h2 id="from-yaml-front-matter-to-yaml-ld">From YAML Front Matter To YAML-LD</h2>
+<h3 id="ordinary-yaml-front-matter">Ordinary YAML Front Matter</h3>
+<p>OKF Markdown already starts with human-readable YAML:</p>
+<pre><code class="language-yaml">---
+type: Heritage Asset
+title: Coventry Cathedral
+resource: https://historicengland.org.uk/listing/the-list/list-entry/1342941
+---
+</code></pre>
+<p>This is excellent for authors and enough for a reader that knows what OKF’s
+field names mean. However, <code>type</code>, <code>resource</code> and a link to another record are
+local labels until a shared semantic meaning and stable identity are declared.</p>
+<h3 id="the-additive-yaml-ld-proposal">The Additive YAML-LD Proposal</h3>
+<p>The exemplar uses <strong>YAML-LD</strong> as a local name for this suggested extension. It
+is not a W3C-defined YAML syntax or media type. YAML-LD is the canonical
+authoring form: people edit Markdown and its readable front matter, not two
+parallel graph files. The safe path is deliberately simple:</p>
+<ol>
+<li>accept only JSON-compatible YAML—string-keyed maps, lists and scalar
+values, UTF-8 text and finite numbers, with no executable tags, cycles or
+duplicate keys;</li>
+<li>parse that YAML into the ordinary JSON data model;</li>
+<li>process the result as JSON-LD using pinned contexts;</li>
+<li>normalize the graph and bind its semantic identity with the semantic plane
+root; and</li>
+<li>generate JSON-LD as an interchange materialization whenever that semantic
+plane changes and again for a release.</li>
+</ol>
+<p>In short: <strong>YAML-LD is what authors maintain, the normalized graph is what
+semantic equality means, and JSON-LD is what interoperable tools receive.</strong> A
+generated JSON-LD file is never a competing hand-edited source of truth.</p>
+<p>The full heritage graph is generated from thousands of frozen source rows, so
+no person sensibly types that root file by hand. Here “authoring form” means a
+named deterministic build stage: the builder emits real YAML, reparses those
+exact YAML-LD bytes through the same safe loader used for hand-authored front
+matter, and derives the semantic shards and JSON-LD only from that parsed data
+model. This prevents a Python object from being serialized twice and merely
+labelled “YAML-LD canonical.”</p>
+<p>For equality, the parsed graph is normalized with the URDNA2015 algorithm into
+canonical N-Quads and hashed. Comments, indentation, mapping order and scalar
+quoting therefore do not change the semantic plane root. The receipt also
+records an exact-byte artifact root, so reviewers can still see and verify a
+formatting-only file change.</p>
+<p>JSON-LD keywords beginning with <code>@</code> are quoted because not every YAML parser
+accepts them unquoted. The resulting front matter looks like this:</p>
+<pre><code class="language-yaml">---
+&quot;@context&quot;:
+  - https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/context.jsonld
+  - https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/semantic-context.jsonld
+&quot;@id&quot;: https://historicengland.org.uk/listing/the-list/list-entry/1342941
+&quot;@type&quot;: https://schema.org/LandmarksOrHistoricalBuildings
+type: Heritage Asset
+title: Cathedral Church of St Michael, Coventry
+resource: https://historicengland.org.uk/listing/the-list/list-entry/1342941
+route: asset/1342941
+assertion_status: official
+assertion_scope: real-world
+&quot;https://schema.org/containedInPlace&quot;:
+  &quot;@id&quot;: https://statistics.data.gov.uk/id/statistical-geography/E08000026
+---
+</code></pre>
+<p>Existing OKF fields remain present. A legacy reader can use <code>type</code>, <code>title</code> and
+<code>resource</code> exactly as before, while ignoring or preserving fields it does not
+understand. A semantic reader additionally understands a globally stable
+subject, a class and governed relationship predicates. In this example the
+last property directly represents the asset-to-Coventry link; its separate
+reified assertion carries the evidence and provenance for that link.</p>
+<p>The example uses the official NHLE page as the asset identity because it is a
+stable, identifier-bound source page. Some records, such as an annual workbook
+row, have no equivalent public item page. For those records the exemplar uses
+a canonical Explorer deep-link IRI: the published project-root URL ending in
+<code>/</code>, the exact bundle URL and an encoded record route. The IRI is therefore
+dereferenceable through the interface without inventing an official source
+identity. The linked workbook resource remains the evidence.</p>
+<h2 id="what-yaml-ld-adds-beyond-existing-okf">What YAML-LD Adds Beyond Existing OKF</h2>
+<p>The proposal adds capabilities; it does not replace Markdown or the permissive
+OKF core.</p>
+<table>
+<thead>
+<tr>
+<th>Existing OKF front matter provides</th>
+<th>The YAML-LD extension additionally provides</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Human-readable display fields</td>
+<td>Globally scoped <code>@id</code> and <code>@type</code> meanings</td>
+</tr>
+<tr>
+<td>Ordinary record and resource links</td>
+<td>Integrity-bound IRI-to-Explorer-route lookup and durable deep links</td>
+</tr>
+<tr>
+<td>Graph endpoints and labels</td>
+<td>Governed predicate, inverse, domain and range definitions</td>
+</tr>
+<tr>
+<td>Provenance fields on a record</td>
+<td>Evidence, derivation, confidence and scope for each relationship</td>
+</tr>
+<tr>
+<td>Searchable names</td>
+<td>Separate preferred names, source aliases and bounded typo variants</td>
+</tr>
+</tbody>
+</table>
+<p>These additions let Search, Graph, Type, Links, Resources, Map, Timeline and
+the selected-record card refer to the same entity and explain the same edge.
+A consumer that understands only existing OKF fields can continue to render
+the Markdown normally.</p>
+<h3 id="stable-identity-across-files-and-views">Stable Identity Across Files And Views</h3>
+<p><code>@id</code> says that a Markdown page, search result, graph node, map feature and
+source resource concern the same thing. An integrity-bound IRI-to-route
+registry tells the Explorer which safe internal route opens that IRI. For an
+official NHLE IRI the Explorer can show both its internal route and the source
+page; for an annual-row or synthetic IRI the identity itself can be the
+canonical Explorer deep link. This avoids guessing routes from URLs.</p>
+<h3 id="type-plane-with-published-meanings">Type Plane With Published Meanings</h3>
+<p><code>@type</code> can point to a published vocabulary term. The Type plane can group
+records by a shared meaning while still showing the source-native category and
+the ordinary OKF display type.</p>
+<h3 id="governed-predicates-instead-of-unlabelled-lines">Governed Predicates Instead Of Unlabelled Lines</h3>
+<p>A graph edge can state its predicate IRI, preferred label, inverse label,
+domain, range, evidence rule and source vocabulary. The UI can therefore show
+“located in” in one direction and “contains” in the other and can explain what
+the line means.</p>
+<h3 id="evidence-about-a-relationship">Evidence About A Relationship</h3>
+<p>RDF reification describes a statement. It does not, by itself, assert that the
+statement is true. The exemplar therefore publishes both:</p>
+<pre><code class="language-text">asset ── containedInPlace ──&gt; geography        direct triple
+  └── assertion metadata: authority, evidence,
+      derivation, date, rights and confidence  reified assertion
+</code></pre>
+<p>The validator requires exactly one direct triple and exactly one matching
+reified assertion. This gives the Graph and data card useful trust information
+without making the semantic dataset ambiguous.</p>
+<h3 id="search-variants-without-corrupting-names">Search Variants Without Corrupting Names</h3>
+<p>Alternative names, abbreviations and deterministic spelling variants can be
+declared separately from the preferred title. The search index can weight them
+and explain a correction while the record card continues to display the
+official source name.</p>
+<h3 id="machine-checkable-context-and-registries">Machine-Checkable Context And Registries</h3>
+<p>The descriptor pins local copies and SHA-256 digests for its JSON-LD contexts,
+IRI-route registry and predicate registry. A changed meaning or route therefore
+changes the URDNA2015 graph digest and semantic plane root, invalidating the
+appropriate checks. The JSON-LD interchange file is regenerated from parsed
+YAML-LD on that same semantic change; a presentation-only edit does not
+rematerialize it.</p>
+<p>The exemplar publishes its
+<a href="https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/okf-bundle.yamlld">YAML-LD graph</a>,
+<a href="https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/okf-bundle.jsonld">generated JSON-LD interchange</a>,
+<a href="https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/data/semantic/validation-report.json">semantic validation report</a>,
+<a href="https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/data/semantic/iri-route-registry.json">IRI-to-route registry</a>
+and <a href="https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/data/semantic/predicate-registry.json">predicate registry</a>
+for direct inspection.</p>
+<h3 id="better-links-in-the-interface">Better Links In The Interface</h3>
+<p>With an IRI route registry, a relationship target can become a safe internal
+Explorer link when that entity is present. External source references remain
+external links. The selected-record card can show both without confusing a
+source page with an Explorer route. Reader, Graph, Links and Resources can all
+open the registered target, while browser Back, Forward, reload and a copied
+deep link preserve the selected record and bundle identity.</p>
+<h2 id="two-independent-labels-status-and-scope">Two Independent Labels: Status And Scope</h2>
+<p>One label cannot say both “who supports this?” and “is this about reality?”</p>
+<table>
+<thead>
+<tr>
+<th><code>assertion_status</code></th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>official</code></td>
+<td>Directly declared by the authoritative source</td>
+</tr>
+<tr>
+<td><code>normalized</code></td>
+<td>Reversible mechanical projection from source evidence</td>
+</tr>
+<tr>
+<td><code>inferred</code></td>
+<td>Rule-derived from supporting assertions</td>
+</tr>
+<tr>
+<td><code>model-derived</code></td>
+<td>Produced with model assistance and governed review metadata</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><code>assertion_scope</code></th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>real-world</code></td>
+<td>Intended as a claim or projection about a real entity</td>
+</tr>
+<tr>
+<td><code>synthetic-fixture</code></td>
+<td>Invented solely to test a capability</td>
+</tr>
+</tbody>
+</table>
+<p>An official source field can be mechanically normalized. A model-derived
+record can still concern a real entity. A perfectly complete synthetic fixture
+is still not a real-world claim. Keeping the axes independent makes those
+differences visible.</p>
+<h2 id="what-yaml-ld-does-not-provide">What YAML-LD Does Not Provide</h2>
+<p>YAML-LD does not automatically provide:</p>
+<ul>
+<li>truth or legal authority;</li>
+<li>permission to copy source material;</li>
+<li>an ontology chosen without domain review;</li>
+<li>safe inference;</li>
+<li>completeness;</li>
+<li>an accessible interface;</li>
+<li>working links or successful publication.</li>
+</ul>
+<p>Those still require sources, constraints, mappings, validators, consumer
+journeys and human review.</p>
+<h2 id="inspect-the-exemplar">Inspect The Exemplar</h2>
+<ul>
+<li><a href="https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/index.html">Faithful corpus landing page</a></li>
+<li><a href="https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/tiny/index.html">Tiny assurance landing page</a></li>
+<li><a href="https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/synthetic/index.html">Synthetic supplement landing page</a></li>
+<li><a href="https://chris-page-gov.github.io/okf-explorer/?bundle=https%3A%2F%2Fchris-page-gov.github.io%2Fokf-heritage-coventry-warwickshire%2Fokf-explorer.json">Open the faithful corpus in OKF Explorer</a></li>
+<li><a href="../../evaluation-foundry/fixtures/heritage-warwickshire/profile.html">Human-readable evaluation profile</a></li>
+<li><a href="../../evaluation-foundry/fixtures/heritage-warwickshire/evaluation-profile.yaml">Machine-readable profile</a></li>
+<li><a href="../../evaluation-foundry/fixtures/heritage-warwickshire/mapping-proposals.yaml">Mapping proposals</a></li>
+<li><a href="../../evaluation-foundry/fixtures/heritage-warwickshire/feature-coverage.json">Feature coverage</a></li>
+<li><a href="../../evaluation-foundry/fixtures/heritage-warwickshire/journeys.json">Executable journeys</a></li>
+<li><a href="../heritage-evaluation-report.html">Evaluation report</a></li>
+<li><a href="https://chris-page-gov.github.io/okf-explorer/profiles/bundle-wiki/v1/semantic-context.jsonld">YAML-LD semantic context</a></li>
+</ul>
+<h2 id="next">Next</h2>
+<p>Return to <a href="https://chris-page-gov.github.io/okf-explorer/docs/beginners/19-foundry-authoring-and-domain-profiles.html">Foundry authoring and domain profiles</a>
+for the general publication process, or continue to
+<a href="https://chris-page-gov.github.io/okf-explorer/docs/beginners/20-governed-enrichment-and-release-assurance.html">governed enrichment and release assurance</a>
+when a functionality evaluation is being promoted into a governed product.</p>
+</main></body>
+</html>

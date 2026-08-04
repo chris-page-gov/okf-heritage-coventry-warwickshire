@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coventry And Warwickshire Heritage Fixture Family</title>
+<link rel="canonical" href="https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/evaluation-foundry/fixtures/heritage-warwickshire/README.html">
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:78rem;margin:auto;padding:2rem}pre,code{overflow:auto}table{border-collapse:collapse}td,th{border:1px solid #bbb;padding:.4rem}</style>
+</head>
+<body><main><h1 id="coventry-and-warwickshire-heritage-fixture-family">Coventry And Warwickshire Heritage Fixture Family</h1>
+<p>This fixture family has three non-overlapping products:</p>
+<ol>
+<li>The <a href="https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/tiny/index.html">tiny assurance landing page</a>
+is generated from a separate small source fixture for deterministic
+producer, negative-case and real-consumer checks; its
+<a href="https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/tiny/okf-explorer.json">descriptor</a> is the machine entry point.</li>
+<li>The <a href="https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/index.html">faithful landing page</a>
+is generated from the frozen Historic England, Office for National
+Statistics and Heritage at Risk snapshots; its
+<a href="https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/okf-explorer.json">descriptor</a> is the machine entry point.</li>
+<li>The <a href="https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/synthetic/index.html">synthetic capability landing page</a>
+is a separate, default-off demonstration namespace for relationships or
+narratives that the permitted source layers cannot evidence. It contributes
+to no faithful count or conclusion; its
+<a href="https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/synthetic/okf-explorer.json">descriptor</a> is explicit and separate.</li>
+</ol>
+<p>NHLE inclusion is exact spatial intersection with Coventry (<code>E08000026</code>) or
+one of the five Warwickshire local-authority boundaries (<code>E07000218</code> through
+<code>E07000222</code>) from the declared ONS boundary vintage. Records intersecting more
+than one boundary are emitted once and retain every intersected geography.
+Heritage at Risk workbooks do not provide equivalent geometry, so their
+inclusion is a separate, reversible normalization of the workbook's local
+planning authority, local authority, unitary, district, borough or council
+field. Locality-only matches are excluded and no spatial intersection is
+claimed for those rows.</p>
+<p>The <a href="evaluation-profile.yaml">evaluation profile</a>, <a href="mapping-proposals.yaml">mapping proposals</a>
+and <a href="journeys.json">journeys</a> are the controlling artifacts. The
+<a href="../../../docs/heritage-evaluation-report.html">beginner report</a> explains the
+results and limitations.</p>
+<p>The candidate and its observations are deliberately separate. The candidate
+contains stable facts, mappings, questions, journeys, link intents and plane
+roots. It contains no workflow run, observation timestamp, current deployment
+status or promotion decision. External-link availability is sampled on its own
+freshness schedule and written to receipts outside the candidate. A signed
+promotion envelope may bind those receipts to the exact deployed bytes only
+after the public journey passes.</p>
+<p>The corpus, its reading pages and future release assets are owned by the
+<a href="https://github.com/chris-page-gov/okf-heritage-coventry-warwickshire">external heritage publication unit</a>.
+The reusable <a href="https://chris-page-gov.github.io/okf-explorer/">OKF Explorer</a>
+remains a separate runtime. The planned release identity is
+<a href="https://github.com/chris-page-gov/okf-heritage-coventry-warwickshire/releases/tag/heritage-coventry-warwickshire-20260804"><code>heritage-coventry-warwickshire-20260804</code></a>;
+it is not described as promoted until its signed envelope and immutable-release
+checks exist.</p>
+<p>For historical context, the earlier
+<a href="https://github.com/chris-page-gov/okf-explorer/releases/tag/heritage-coventry-warwickshire-20260803"><code>heritage-coventry-warwickshire-20260803</code></a>
+release records the first deployment observation. It was mutable at the GitHub
+platform level and its tag was lightweight, so it is evidence of that earlier
+run, not an immutable promotion record.</p>
+</main></body>
+</html>

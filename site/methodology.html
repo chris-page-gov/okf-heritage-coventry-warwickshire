@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coventry and Warwickshire Heritage Evaluation methodology</title>
+<link rel="canonical" href="https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/methodology.html">
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:78rem;margin:auto;padding:2rem}pre,code{overflow:auto}table{border-collapse:collapse}td,th{border:1px solid #bbb;padding:.4rem}</style>
+</head>
+<body><main><h1 id="coventry-and-warwickshire-heritage-evaluation-methodology">Coventry and Warwickshire Heritage Evaluation methodology</h1>
+<h2 id="scope">Scope</h2>
+<p>Inclusion is an intersection with Coventry (<code>E08000026</code>) or one of the five
+Warwickshire local-authority boundaries in the pinned ONS December 2025 BFC
+layer. A record intersecting several boundaries is emitted once and retains
+every intersection.</p>
+<h2 id="source-layers">Source layers</h2>
+<ul>
+<li>The National Heritage List for England FeatureServer supplies identifiers,
+names, categories, grades, dates, National Grid references and geometry.</li>
+<li>Sanctioned annual Heritage at Risk spreadsheets supply annual entries,
+additions and positive removals. Missing historical columns remain unknown.</li>
+<li>Historic England's NHLE rich HTML pages and HAR register searches remain
+linked official resources; their narrative is not bulk-copied into this
+repository, and an opaque HAR item route is never inferred.</li>
+</ul>
+<h2 id="geometry">Geometry</h2>
+<p>ArcGIS delivered retained source geometry in WGS 84 (<code>EPSG:4326</code>) because the
+acquisition requested <code>outSR=4326</code>. The builder validates that declaration and
+normalizes only the Esri geometry structure; it does not transform coordinates.
+Source points remain explicit points. Polygon and multipoint records use a
+clearly labelled bounding-box centre only for schematic orientation; source
+geometry is retained in bounded GeoJSON shards.</p>
+<h2 id="link-validation">Link validation</h2>
+<p>Every NHLE rich page and HAR register search is bound to its source identifier
+and allowed origin. Local Markdown-to-HTML links and fragments are checked by
+the assembled-site audit. The publication gate additionally opens
+representative source pages and every task-critical deployed route in a real
+browser.</p>
+<h2 id="relationship-projection-rules">Relationship projection rules</h2>
+<p>Relationships use the record IRIs registered by the YAML-LD semantic layer.
+Official annual HAR-to-NHLE links come only from a source List entry field;
+boundary links are deterministic projections of the recorded intersection.
+Derivation and rule links return to this published explanation rather than to
+an unserved identifier path. Annual HAR rows retain year precision and never
+invent a day or month.</p>
+<h2 id="frozen-source">Frozen source</h2>
+<p><strong>Snapshot:</strong> <code>heritage-coventry-warwickshire-20260803-v2</code></p>
+<p><strong>Observed:</strong> <code>2026-08-03T00:00:00Z</code></p>
+</main></body>
+</html>
