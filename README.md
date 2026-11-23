@@ -41,3 +41,7 @@ byte count and SHA-256 digest.
 Pushes that change only workflows or other root control files do not redeploy
 Pages: the Pages push trigger is limited to `site/**`. A deliberate manual
 Pages dispatch remains available.
+
+## OKF standards and bundle discovery
+
+The [central standards register](https://github.com/chris-page-gov/okf-explorer/blob/main/docs/okf-standards.md) records current and historical OKF specifications, version-specific pins and the public bundle catalogue. Use the [machine-readable register](https://raw.githubusercontent.com/chris-page-gov/okf-explorer/main/registry/okf-standards.json) to resolve the version implemented by this repository.
