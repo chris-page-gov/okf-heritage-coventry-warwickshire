@@ -21,15 +21,20 @@
 - Give all exported reading pages an explicit inline icon and the `en-GB`
   locale. The public browser check caught the implicit owner-root favicon
   request returning HTTP 404; this correction preserves all data and graphs.
+- Export the exact Python version pin as `toolchain/python-version.txt`.
+  Pages does not serve dotfiles; the visible filename keeps every material in
+  the public manifest accessible without changing the Python pin.
+- Pass CPython 3.12.11 explicitly to every workflow synchronisation step, so
+  moving the public version record cannot change environment selection.
 
 The candidate remains separate from public and release acceptance. Protected
 Historic England pages must pass the declared genuine-browser identity check;
 a challenge or HTTP 403 does not establish narrative availability.
 
 Authoring and control revision:
-[`a3885923`](https://github.com/chris-page-gov/okf-explorer/tree/a38859233f5f410a06558577a1aeb39aa656260a).
+[`67117767`](https://github.com/chris-page-gov/okf-explorer/tree/671177673cdcfdad9529f8da316fdc5965e355b3).
 The reviewed `site/` tree is
-`2bd6f2a4a78db9805e628740fc4fb2ffe9e0e42216ba6f6a8d666b7cd30c56a4`.
+`8eb5d1e278bda3bd4a10ffb0ee58498eb2cb0972ca784a5d686fbccb5c2f88a0`.
 
 ## Unreleased — standards references
 
