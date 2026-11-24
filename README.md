@@ -5,6 +5,10 @@ and Warwickshire heritage Evaluation Foundry exemplar. The immutable candidate
 is rooted at `site/`; workflow receipts and promotion evidence remain outside
 that directory so observations never rewrite the candidate they describe.
 
+Exported reading pages declare British English and an explicit inline icon.
+Browser acceptance checks landing pages, worked guides, console messages and
+failed resource requests before a release is accepted.
+
 The public Site is
 <https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/>.
 Candidate and promotion releases use the two-release closure described in

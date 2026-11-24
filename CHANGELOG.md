@@ -18,15 +18,18 @@
   all candidate, terminal, protected-source, attestation and promotion gates.
 - Initialise the temporary environment in a runner step and persist it through
   `GITHUB_ENV`, so GitHub can validate the workflow before assigning a runner.
+- Give all exported reading pages an explicit inline icon and the `en-GB`
+  locale. The public browser check caught the implicit owner-root favicon
+  request returning HTTP 404; this correction preserves all data and graphs.
 
 The candidate remains separate from public and release acceptance. Protected
 Historic England pages must pass the declared genuine-browser identity check;
 a challenge or HTTP 403 does not establish narrative availability.
 
 Authoring and control revision:
-[`f622e0fc`](https://github.com/chris-page-gov/okf-explorer/tree/f622e0fc0f545667afe764851c254de2023659c4).
+[`a3885923`](https://github.com/chris-page-gov/okf-explorer/tree/a38859233f5f410a06558577a1aeb39aa656260a).
 The reviewed `site/` tree is
-`6abae363cdb7fa0f44e58bfa2176ed7c48d9865c61122c82a40273703436ebe3`.
+`2bd6f2a4a78db9805e628740fc4fb2ffe9e0e42216ba6f6a8d666b7cd30c56a4`.
 
 ## Unreleased — standards references
 
