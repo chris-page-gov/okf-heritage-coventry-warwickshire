@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heritage 0.3 migration</title>
+<link rel="canonical" href="https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/docs/heritage-0.3-migration.html">
+<style>body{font:16px/1.55 system-ui,sans-serif;max-width:78rem;margin:auto;padding:2rem}pre,code{overflow:auto}table{border-collapse:collapse}td,th{border:1px solid #bbb;padding:.4rem}</style>
+</head>
+<body><main><h1 id="heritage-0-3-migration">Heritage 0.3 migration</h1>
+<p>Implementation date: 24 November 2026. The upstream 0.3 announcement was on
+18 November 2026; the Explorer/OKF+ implementation began on 23 November 2026.
+Use the <a href="https://github.com/chris-page-gov/okf-explorer/blob/main/docs/okf-standards.md">central standards register</a> for current and historical
+specification pins.</p>
+<p>Three independent logical bundles retain their own snapshots, namespaces,
+scope, questions, negative controls and Reader journeys:</p>
+<table>
+<thead>
+<tr>
+<th>Bundle</th>
+<th>Metadata records and assertions</th>
+<th>Worked question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Full source snapshot</td>
+<td>7,640 records; 9,566 assertions</td>
+<td>Distinguish the listed building, park and garden and scheduled-monument records for Warwick Castle, then identify the subject of the 2025 risk assessment</td>
+</tr>
+<tr>
+<td>Tiny assurance subset</td>
+<td>Three records; four assertions</td>
+<td>Link the risk row to Church of St Peter without transferring it to the cathedral or claiming geographical completeness</td>
+</tr>
+<tr>
+<td>Synthetic supplement</td>
+<td>Three invented records; two assertions</td>
+<td>Preserve a proposed intervention and an uncertain attribution, including scope and confidence</td>
+</tr>
+</tbody>
+</table>
+<p>Each generated directory includes its own <code>walkthrough.html</code>, readable diagram,
+<code>walkthrough-data.json</code>, <code>walkthrough.explorer-journeys.json</code>, <code>ai-context.md</code>
+and <code>llms.txt</code>. A separate <code>walkthrough.explorer-057-journeys.json</code> retains
+the legacy Reader's panel selector with the same source assertions.
+The evidence contains complete selected record/assertion
+objects, a deterministic source-snapshot identity, the authored case hash and
+links to the complete graph and source manifests. These question-specific
+extracts do not replace whole-bundle reconciliation and access checks.</p>
+<h2 id="core-and-profile-boundary">Core and profile boundary</h2>
+<p>The root index declares core 0.3. Indexes and plain-text date-grouped logs are
+navigation; they are not concepts. Each generated corpus has one typed
+methodology concept. The full publication also includes its typed evaluation
+report and profile: its assembled core therefore has three concepts and two
+directed Markdown references. The tiny and synthetic publications each retain
+one core concept and no local core references. Structured record counts belong
+to the separately governed Evaluation Foundry profile; they are not Markdown
+concept counts. Existing YAML-LD context and schema identifiers retain their
+versioned meaning.</p>
+<p>The three retained source snapshots are unchanged. Source observations retain
+their August 2026 capture dates and annual risk rows retain year precision.
+The migration introduces no new source acquisition, inferred current
+condition, named human review, synthetic contribution to faithful counts,
+permission or legal conclusion. Upstream names, schema/API identifiers and
+quoted source values retain their original spelling; generated explanatory
+prose uses British English.</p>
+<p>The prior independent publication omitted human labels from its semantic
+assertions. The current export restores each label from the unchanged runtime
+relationship. Every other assertion field, identity and direction is retained;
+the graph digests consequently change. All record, search and runtime
+relationship files remain byte-identical. The full source snapshot has the
+same JSON content despite a different compressed representation.</p>
+<p>Evaluation Foundry profile 2.1.0 pins Explorer 0.9.0 at <code>cce6e68</code> and retains
+0.5.7 at <code>0b5d748</code> for local backward compatibility. Both consumers must pass
+the bundle-specific record journeys. The public deep-link gate applies to
+the current Reader; the historical runtime is not a separate public service.
+The two pre-migration 2.0.0 profile representations remain byte-for-byte
+preserved in compressed files under the fixture's <code>history/2.0.0/</code> directory.</p>
+<p>The publication unit carries the reviewed Python project and lockfile under
+<code>toolchain/</code>. Its CI and Pages checks use uv 0.13.4 with CPython 3.12.11.
+Candidate, terminal and promotion workflows use the same locked environment
+from the exact Explorer assurance commit. This keeps installation separate
+from candidate contents and retains every existing release and browser gate.</p>
+<h2 id="publication-boundary-and-remaining-gates">Publication boundary and remaining gates</h2>
+<p>Explorer owns the frozen source snapshots, generator and evaluation profile.
+The independent Heritage publication repository owns the exact <code>site/</code>
+candidate and its candidate/promotion release controls. Observations and
+browser receipts stay outside that immutable candidate.</p>
+<p>Source compilation and local core checks are separate from complete semantic
+reconciliation, real Reader journeys, complete asset access, live public
+walkthrough checks and release closure. The Heritage release policy requires
+its attested immutable candidate and separate promotion release; this document
+does not claim that either has been completed for 0.3.</p>
+<p>Official rich-page narrative is linked rather than copied. A protected page or
+HTTP 403 must remain explicit; metadata completeness does not verify an
+unavailable narrative or establish a site's current condition.</p>
+</main></body>
+</html>

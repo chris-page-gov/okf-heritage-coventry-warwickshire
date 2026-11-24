@@ -43,7 +43,7 @@ language.</p>
 <tr>
 <td><a href="https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/index.html">Source-backed faithful corpus</a></td>
 <td>Evaluate the complete, explicitly bounded source population</td>
-<td style="text-align:right">Yes, with visible normalization</td>
+<td style="text-align:right">Yes, with visible normalisation</td>
 <td style="text-align:right">Yes</td>
 <td style="text-align:right">Yes</td>
 </tr>
@@ -72,7 +72,7 @@ exemplar they include:</p>
 <li>Which records appeared in Heritage at Risk, in what year and condition?</li>
 <li>Which periods, people and alternative names can be found?</li>
 <li>How did annual risk observations change?</li>
-<li>Which associations are source-declared, mechanically normalized or only
+<li>Which associations are source-declared, mechanically normalised or only
 illustrative?</li>
 </ul>
 <p>Each question becomes a scored question, an Explorer journey or an explicit
@@ -111,7 +111,7 @@ value. Locality, parish, town and city fields are not used as authority
 evidence. This prevents, for example, a place called Warwick Bridge in Cumbria
 from being mistaken for Warwick District.</p>
 <p>The workbooks also supply a register <strong>year</strong>, not a publication day. A
-normalized HAR observation therefore records <code>year</code>, <code>temporal_coverage</code> and
+normalised HAR observation therefore records <code>year</code>, <code>temporal_coverage</code> and
 <code>date_precision: year</code>, while day-precision timestamp fields remain empty. The
 Timeline can show the annual snapshot without inventing 1 January.</p>
 <h3 id="e3-make-mapping-proposals-reversible">E3 — Make Mapping Proposals Reversible</h3>
@@ -147,7 +147,7 @@ evidence:</p>
 <tr>
 <td>HAR observation → geography</td>
 <td>Exact authority field and value from the annual workbook</td>
-<td>Reversible field normalization; <strong>not</strong> a spatial intersection</td>
+<td>Reversible field normalisation; <strong>not</strong> a spatial intersection</td>
 </tr>
 </tbody>
 </table>
@@ -232,7 +232,7 @@ outside that closure are not covered by this claim.</li>
 <li>The assembled Site audit checks the rewritten HTML routes and internal
 references in the reading closure.</li>
 <li>Representative protected source pages are opened in a genuine interactive
-browser on an independent freshness schedule. A small receipt outside the
+browser on an independent freshness schedule. A small <a href="https://chris-page-gov.github.io/okf-explorer/docs/beginners/16-beginner-glossary.html#receipt">receipt</a> outside the
 candidate records when each page was seen, its requested and final URL,
 status, title and expected identity text. The evaluator rejects a challenge
 page, failed status, unexpected redirect or mismatched identity; the receipt
@@ -253,7 +253,9 @@ truth. It uses normal Markdown links rather than editor-specific wikilinks.
 During publication, each in-scope <code>.md</code> reading page is rendered as an <code>.html</code>
 page and internal links are rewritten and checked against those HTML routes.
 Explorer deep links point to the published project-root URL ending in <code>/</code>,
-identify the bundle and carry an encoded record route in the fragment. A
+identify the bundle and carry a record route in the fragment. Routes containing
+percent escapes use an opaque <code>record:</code> base64url token so browser decoding
+cannot change encoded path separators; ordinary routes remain readable. A
 copied URL can therefore reopen the same record in the interface instead of
 exposing a filesystem path or relying on a Markdown renderer.</p>
 <h3 id="e9-publish-the-bytes-that-passed">E9 — Publish The Bytes That Passed</h3>
@@ -295,35 +297,41 @@ resource: https://historicengland.org.uk/listing/the-list/list-entry/1342941
 field names mean. However, <code>type</code>, <code>resource</code> and a link to another record are
 local labels until a shared semantic meaning and stable identity are declared.</p>
 <h3 id="the-additive-yaml-ld-proposal">The Additive YAML-LD Proposal</h3>
-<p>The exemplar uses <strong>YAML-LD</strong> as a local name for this suggested extension. It
-is not a W3C-defined YAML syntax or media type. YAML-LD is the canonical
-authoring form: people edit Markdown and its readable front matter, not two
-parallel graph files. The safe path is deliberately simple:</p>
+<p>The exemplar uses <strong>YAML-LD</strong> as the canonical authoring form for this additive
+extension. <a href="https://www.w3.org/TR/yaml-ld-10/">YAML-LD 1.0</a> is now a W3C
+Working Draft, not a W3C Recommendation, and may still change. This project
+therefore pins and validates a deliberately constrained subset: people edit
+Markdown and its readable front matter, not two parallel graph files.</p>
+<p>The <a href="https://chris-page-gov.github.io/okf-explorer/docs/okf-0.2-yaml-ld-semantic-authoring.html">canonical semantic-authoring contract and live rollout ledger</a>
+records the current cross-repository implementation and release boundaries.
+Treat it as the live ledger rather than copying its status table into this
+chapter.</p>
+<p>The safe path is deliberately simple:</p>
 <ol>
 <li>accept only JSON-compatible YAML—string-keyed maps, lists and scalar
 values, UTF-8 text and finite numbers, with no executable tags, cycles or
 duplicate keys;</li>
 <li>parse that YAML into the ordinary JSON data model;</li>
 <li>process the result as JSON-LD using pinned contexts;</li>
-<li>normalize the graph and bind its semantic identity with the semantic plane
+<li>normalise the graph and bind its semantic identity with the semantic plane
 root; and</li>
-<li>generate JSON-LD as an interchange materialization whenever that semantic
+<li>generate JSON-LD as an interchange materialisation whenever that semantic
 plane changes and again for a release.</li>
 </ol>
-<p>In short: <strong>YAML-LD is what authors maintain, the normalized graph is what
+<p>In short: <strong>YAML-LD is what authors maintain, the normalised graph is what
 semantic equality means, and JSON-LD is what interoperable tools receive.</strong> A
 generated JSON-LD file is never a competing hand-edited source of truth.</p>
 <p>The full heritage graph is generated from thousands of frozen source rows, so
 no person sensibly types that root file by hand. Here “authoring form” means a
-named deterministic build stage: the builder emits real YAML, reparses those
+named <a href="https://chris-page-gov.github.io/okf-explorer/docs/beginners/16-beginner-glossary.html#deterministic">deterministic</a> build stage: the builder emits real YAML, reparses those
 exact YAML-LD bytes through the same safe loader used for hand-authored front
 matter, and derives the semantic shards and JSON-LD only from that parsed data
-model. This prevents a Python object from being serialized twice and merely
+model. This prevents a Python object from being serialised twice and merely
 labelled “YAML-LD canonical.”</p>
-<p>For equality, the parsed graph is normalized with the URDNA2015 algorithm into
+<p>For equality, the parsed graph is normalised with the URDNA2015 algorithm into
 canonical N-Quads and hashed. Comments, indentation, mapping order and scalar
 quoting therefore do not change the semantic plane root. The receipt also
-records an exact-byte artifact root, so reviewers can still see and verify a
+records an exact-byte artefact root, so reviewers can still see and verify a
 formatting-only file change.</p>
 <p>JSON-LD keywords beginning with <code>@</code> are quoted because not every YAML parser
 accepts them unquoted. The resulting front matter looks like this:</p>
@@ -349,6 +357,11 @@ understand. A semantic reader additionally understands a globally stable
 subject, a class and governed relationship predicates. In this example the
 last property directly represents the asset-to-Coventry link; its separate
 reified assertion carries the evidence and provenance for that link.</p>
+<p>The <code>statistics.data.gov.uk</code> address is the identifier used in this snapshot.
+The ONS retired the former data service. Use the current <a href="https://www.ons.gov.uk/explore-local-statistics/areas/E08000026-coventry">ONS area profile for
+Coventry (E08000026)</a>
+to look up that code, and keep the original identifier when reproducing this
+example.</p>
 <p>The example uses the official NHLE page as the asset identity because it is a
 stable, identifier-bound source page. Some records, such as an annual workbook
 row, have no equivalent public item page. For those records the exemplar uses
@@ -430,7 +443,7 @@ IRI-route registry and predicate registry. A changed meaning or route therefore
 changes the URDNA2015 graph digest and semantic plane root, invalidating the
 appropriate checks. The JSON-LD interchange file is regenerated from parsed
 YAML-LD on that same semantic change; a presentation-only edit does not
-rematerialize it.</p>
+rematerialise it.</p>
 <p>The exemplar publishes its
 <a href="https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/okf-bundle.yamlld">YAML-LD graph</a>,
 <a href="https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/okf-bundle.jsonld">generated JSON-LD interchange</a>,
@@ -491,7 +504,7 @@ deep link preserve the selected record and bundle identity.</p>
 </tr>
 </tbody>
 </table>
-<p>An official source field can be mechanically normalized. A model-derived
+<p>An official source field can be mechanically normalised. A model-derived
 record can still concern a real entity. A perfectly complete synthetic fixture
 is still not a real-world claim. Keeping the axes independent makes those
 differences visible.</p>
@@ -527,5 +540,17 @@ journeys and human review.</p>
 for the general publication process, or continue to
 <a href="https://chris-page-gov.github.io/okf-explorer/docs/beginners/20-governed-enrichment-and-release-assurance.html">governed enrichment and release assurance</a>
 when a functionality evaluation is being promoted into a governed product.</p>
+<h2 id="learning-path-connections">Learning path connections</h2>
+<ul>
+<li><a href="https://chris-page-gov.github.io/okf-explorer/docs/beginners/index.html#learning-path">Learning path overview</a></li>
+<li>Previous chapter is <a href="https://chris-page-gov.github.io/okf-explorer/docs/beginners/21-release-gates-evidence-and-owner-review.html#learning-path-connections">Release Gates, Evidence And Owner Review</a>.</li>
+<li>Next chapter is <a href="https://chris-page-gov.github.io/okf-explorer/docs/beginners/23-foundational-definitions.html#learning-path-connections">Foundational Definitions</a>.</li>
+<li>Glossary terms in this chapter include <a href="https://chris-page-gov.github.io/okf-explorer/docs/beginners/16-beginner-glossary.html#candidate">Candidate</a>,
+<a href="https://chris-page-gov.github.io/okf-explorer/docs/beginners/16-beginner-glossary.html#deterministic">Deterministic</a>,
+<a href="https://chris-page-gov.github.io/okf-explorer/docs/beginners/16-beginner-glossary.html#fixture">Fixture</a>,
+<a href="https://chris-page-gov.github.io/okf-explorer/docs/beginners/16-beginner-glossary.html#projection">Projection</a>,
+<a href="https://chris-page-gov.github.io/okf-explorer/docs/beginners/16-beginner-glossary.html#receipt">Receipt</a>.</li>
+<li>Apply this chapter in <a href="https://chris-page-gov.github.io/okf-explorer/docs/beginners/25-life-course-worked-example.html#exercise-3-review-the-status-of-a-claim">exercise 3</a>.</li>
+</ul>
 </main></body>
 </html>
