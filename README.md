@@ -10,6 +10,7 @@ Browser acceptance checks landing pages, worked guides, console messages and
 failed resource requests before a release is accepted.
 The unchanged Python version source is exported as
 `site/toolchain/python-version.txt`, since Pages does not serve dotfiles.
+All workflows also pass `--python 3.12.11` explicitly to `uv sync`.
 
 The public Site is
 <https://chris-page-gov.github.io/okf-heritage-coventry-warwickshire/>.
